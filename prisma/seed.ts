@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Inserindo dados na tabela tipoConserto
+  await prisma.mecanico.deleteMany({});
   await prisma.mecanico.createMany({
     data: [
       { nome: 'Carlos', idade: 25, tempoPorDia: 8, nivelComplexidade: 2 },
@@ -18,6 +18,8 @@ async function main() {
       { nome: 'Laura', idade: 24, tempoPorDia: 8, nivelComplexidade: 1 },
     ],
   });
+
+  await prisma.tipoConserto.deleteMany({});
   await prisma.tipoConserto.createMany({
     data: [
       { id: 1, tempoEstimado: 2 },
@@ -27,7 +29,420 @@ async function main() {
       { id: 5, tempoEstimado: 1 },
     ],
   });
-  // Inserindo dados na tabela consertoDeMotos
+
+  await prisma.moto.deleteMany({});
+  const motos = [
+    {
+      id: 34,
+      marca: 'Honda',
+      modelo: 'CB 500',
+      ano: 2019,
+      cor: 'Vermelha',
+      cpf: null,
+    },
+    {
+      id: 294,
+      marca: 'Yamaha',
+      modelo: 'Fazer 250',
+      ano: 2020,
+      cor: 'Preta',
+      cpf: null,
+    },
+    {
+      id: 314,
+      marca: 'Suzuki',
+      modelo: 'GSX-R750',
+      ano: 2018,
+      cor: 'Azul',
+      cpf: null,
+    },
+    {
+      id: 488,
+      marca: 'Kawasaki',
+      modelo: 'Ninja 400',
+      ano: 2021,
+      cor: 'Verde',
+      cpf: null,
+    },
+    {
+      id: 123,
+      marca: 'Ducati',
+      modelo: 'Monster 821',
+      ano: 2020,
+      cor: 'Amarela',
+      cpf: null,
+    },
+    {
+      id: 221,
+      marca: 'BMW',
+      modelo: 'S 1000 RR',
+      ano: 2019,
+      cor: 'Branca',
+      cpf: null,
+    },
+    {
+      id: 456,
+      marca: 'Triumph',
+      modelo: 'Street Triple',
+      ano: 2021,
+      cor: 'Cinza',
+      cpf: null,
+    },
+    {
+      id: 89,
+      marca: 'Harley-Davidson',
+      modelo: 'Iron 883',
+      ano: 2017,
+      cor: 'Preta',
+      cpf: null,
+    },
+    {
+      id: 190,
+      marca: 'KTM',
+      modelo: 'Duke 390',
+      ano: 2019,
+      cor: 'Laranja',
+      cpf: null,
+    },
+    {
+      id: 402,
+      marca: 'Yamaha',
+      modelo: 'MT-07',
+      ano: 2020,
+      cor: 'Azul',
+      cpf: null,
+    },
+    {
+      id: 76,
+      marca: 'Honda',
+      modelo: 'CBR 1000RR',
+      ano: 2021,
+      cor: 'Vermelha',
+      cpf: null,
+    },
+    {
+      id: 320,
+      marca: 'Suzuki',
+      modelo: 'Hayabusa',
+      ano: 2018,
+      cor: 'Prata',
+      cpf: null,
+    },
+    {
+      id: 145,
+      marca: 'Ducati',
+      modelo: 'Panigale V4',
+      ano: 2020,
+      cor: 'Vermelha',
+      cpf: null,
+    },
+    {
+      id: 67,
+      marca: 'BMW',
+      modelo: 'R 1250 GS',
+      ano: 2021,
+      cor: 'Azul',
+      cpf: null,
+    },
+    {
+      id: 290,
+      marca: 'Kawasaki',
+      modelo: 'Z900',
+      ano: 2019,
+      cor: 'Verde',
+      cpf: null,
+    },
+    {
+      id: 112,
+      marca: 'Triumph',
+      modelo: 'Tiger 900',
+      ano: 2020,
+      cor: 'Cinza',
+      cpf: null,
+    },
+    {
+      id: 404,
+      marca: 'Harley-Davidson',
+      modelo: 'Fat Bob',
+      ano: 2021,
+      cor: 'Preta',
+      cpf: null,
+    },
+    {
+      id: 310,
+      marca: 'KTM',
+      modelo: 'Adventure 390',
+      ano: 2020,
+      cor: 'Laranja',
+      cpf: null,
+    },
+    {
+      id: 22,
+      marca: 'Yamaha',
+      modelo: 'R3',
+      ano: 2018,
+      cor: 'Azul',
+      cpf: null,
+    },
+    {
+      id: 459,
+      marca: 'Suzuki',
+      modelo: 'GSX-S750',
+      ano: 2020,
+      cor: 'Preta',
+      cpf: null,
+    },
+    {
+      id: 134,
+      marca: 'Ducati',
+      modelo: 'Scrambler',
+      ano: 2019,
+      cor: 'Amarela',
+      cpf: null,
+    },
+    {
+      id: 293,
+      marca: 'Honda',
+      modelo: 'Africa Twin',
+      ano: 2021,
+      cor: 'Vermelha',
+      cpf: null,
+    },
+    {
+      id: 378,
+      marca: 'BMW',
+      modelo: 'S 1000 XR',
+      ano: 2020,
+      cor: 'Branca',
+      cpf: null,
+    },
+    {
+      id: 101,
+      marca: 'Triumph',
+      modelo: 'Bonneville',
+      ano: 2018,
+      cor: 'Verde',
+      cpf: null,
+    },
+    {
+      id: 376,
+      marca: 'Yamaha',
+      modelo: 'Tracer 900',
+      ano: 2019,
+      cor: 'Azul',
+      cpf: null,
+    },
+    {
+      id: 184,
+      marca: 'Kawasaki',
+      modelo: 'Versys 650',
+      ano: 2021,
+      cor: 'Verde',
+      cpf: null,
+    },
+    {
+      id: 231,
+      marca: 'Suzuki',
+      modelo: 'V-Strom 650',
+      ano: 2020,
+      cor: 'Amarela',
+      cpf: null,
+    },
+    {
+      id: 498,
+      marca: 'Harley-Davidson',
+      modelo: 'Sportster',
+      ano: 2019,
+      cor: 'Preta',
+      cpf: null,
+    },
+    {
+      id: 345,
+      marca: 'Ducati',
+      modelo: 'Diavel 1260',
+      ano: 2021,
+      cor: 'Vermelha',
+      cpf: null,
+    },
+    {
+      id: 109,
+      marca: 'BMW',
+      modelo: 'F 850 GS',
+      ano: 2020,
+      cor: 'Branca',
+      cpf: null,
+    },
+    {
+      id: 203,
+      marca: 'KTM',
+      modelo: 'Super Duke 1290',
+      ano: 2018,
+      cor: 'Laranja',
+      cpf: null,
+    },
+    {
+      id: 187,
+      marca: 'Triumph',
+      modelo: 'Speed Twin',
+      ano: 2021,
+      cor: 'Preta',
+      cpf: null,
+    },
+    {
+      id: 291,
+      marca: 'Honda',
+      modelo: 'CB 650R',
+      ano: 2020,
+      cor: 'Vermelha',
+      cpf: null,
+    },
+    {
+      id: 412,
+      marca: 'Suzuki',
+      modelo: 'GSX-R1000',
+      ano: 2021,
+      cor: 'Azul',
+      cpf: null,
+    },
+    {
+      id: 175,
+      marca: 'Kawasaki',
+      modelo: 'Z650',
+      ano: 2019,
+      cor: 'Verde',
+      cpf: null,
+    },
+    {
+      id: 64,
+      marca: 'Harley-Davidson',
+      modelo: 'Road King',
+      ano: 2018,
+      cor: 'Preta',
+      cpf: null,
+    },
+    {
+      id: 344,
+      marca: 'BMW',
+      modelo: 'R nineT',
+      ano: 2020,
+      cor: 'Branca',
+      cpf: null,
+    },
+    {
+      id: 220,
+      marca: 'Honda',
+      modelo: 'CB 500X',
+      ano: 2019,
+      cor: 'Vermelha',
+      cpf: null,
+    },
+    {
+      id: 128,
+      marca: 'Yamaha',
+      modelo: 'XSR 900',
+      ano: 2021,
+      cor: 'Azul',
+      cpf: null,
+    },
+    {
+      id: 401,
+      marca: 'Suzuki',
+      modelo: 'GSX-S1000',
+      ano: 2020,
+      cor: 'Preta',
+      cpf: null,
+    },
+    {
+      id: 147,
+      marca: 'Triumph',
+      modelo: 'Street Scrambler',
+      ano: 2020,
+      cor: 'Verde',
+      cpf: null,
+    },
+    {
+      id: 338,
+      marca: 'Kawasaki',
+      modelo: 'Z1000',
+      ano: 2021,
+      cor: 'Verde',
+      cpf: null,
+    },
+    {
+      id: 178,
+      marca: 'Honda',
+      modelo: 'CB 300R',
+      ano: 2021,
+      cor: 'Vermelha',
+      cpf: null,
+    },
+    {
+      id: 234,
+      marca: 'Suzuki',
+      modelo: 'Katana',
+      ano: 2020,
+      cor: 'Prata',
+      cpf: null,
+    },
+    {
+      id: 97,
+      marca: 'BMW',
+      modelo: 'G 310 GS',
+      ano: 2019,
+      cor: 'Branca',
+      cpf: null,
+    },
+    {
+      id: 120,
+      marca: 'Ducati',
+      modelo: 'Multistrada 950',
+      ano: 2018,
+      cor: 'Vermelha',
+      cpf: null,
+    },
+    {
+      id: 154,
+      marca: 'Triumph',
+      modelo: 'Thruxton',
+      ano: 2021,
+      cor: 'Preta',
+      cpf: null,
+    },
+    {
+      id: 299,
+      marca: 'Harley-Davidson',
+      modelo: 'Softail',
+      ano: 2020,
+      cor: 'Cinza',
+      cpf: null,
+    },
+    {
+      id: 432,
+      marca: 'Yamaha',
+      modelo: 'Tenere 700',
+      ano: 2021,
+      cor: 'Azul',
+      cpf: null,
+    },
+    {
+      id: 75,
+      marca: 'Suzuki',
+      modelo: 'Burgman 400',
+      ano: 2018,
+      cor: 'Prata',
+      cpf: null,
+    },
+  ];
+
+  for (const moto of motos) {
+    await prisma.moto.upsert({
+      where: { id: moto.id },
+      update: moto,
+      create: moto,
+    });
+  }
+
+  await prisma.consertoDeMotos.deleteMany({});
   await prisma.consertoDeMotos.createMany({
     data: [
       {
@@ -35,7 +450,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 3,
         tempoReal: 4,
-        dataEntrada: new Date(7 / 10 / 2024),
+        dataEntrada: new Date(2024, 10, 7),
         mecanicoId: 2,
       },
       {
@@ -43,7 +458,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 1,
         tempoReal: 3,
-        dataEntrada: new Date(7 / 10 / 2024),
+        dataEntrada: new Date(2024, 10, 7),
         mecanicoId: 1,
       },
       {
@@ -51,7 +466,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 2,
         tempoReal: 2,
-        dataEntrada: new Date(7 / 10 / 2024),
+        dataEntrada: new Date(2024, 10, 7),
         mecanicoId: 7,
       },
       {
@@ -59,7 +474,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 4,
         tempoReal: 1,
-        dataEntrada: new Date(7 / 10 / 2024),
+        dataEntrada: new Date(2024, 10, 7),
         mecanicoId: 6,
       },
       {
@@ -67,7 +482,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 3,
         tempoReal: 4,
-        dataEntrada: new Date(7 / 10 / 2024),
+        dataEntrada: new Date(2024, 10, 7),
         mecanicoId: 4,
       },
       {
@@ -75,7 +490,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 1,
         tempoReal: 2,
-        dataEntrada: new Date(7 / 10 / 2024),
+        dataEntrada: new Date(2024, 10, 7),
         mecanicoId: 10,
       },
       {
@@ -83,7 +498,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 5,
         tempoReal: 5,
-        dataEntrada: new Date(7 / 11 / 2024),
+        dataEntrada: new Date(2024, 11, 7),
         mecanicoId: 9,
       },
       {
@@ -91,7 +506,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 2,
         tempoReal: 6,
-        dataEntrada: new Date(7 / 11 / 2024),
+        dataEntrada: new Date(2024, 11, 7),
         mecanicoId: 8,
       },
       {
@@ -99,7 +514,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 4,
         tempoReal: 1,
-        dataEntrada: new Date(7 / 11 / 2024),
+        dataEntrada: new Date(2024, 11, 7),
         mecanicoId: 7,
       },
       {
@@ -107,7 +522,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 3,
         tempoReal: 3,
-        dataEntrada: new Date(7 / 11 / 2024),
+        dataEntrada: new Date(2024, 11, 7),
         mecanicoId: 1,
       },
       {
@@ -115,7 +530,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 1,
         tempoReal: 4,
-        dataEntrada: new Date(7 / 11 / 2024),
+        dataEntrada: new Date(2024, 11, 7),
         mecanicoId: 10,
       },
       {
@@ -123,7 +538,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 5,
         tempoReal: 5,
-        dataEntrada: new Date(7 / 11 / 2024),
+        dataEntrada: new Date(2024, 11, 7),
         mecanicoId: 8,
       },
       {
@@ -131,7 +546,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 2,
         tempoReal: 6,
-        dataEntrada: new Date(7 / 11 / 2024),
+        dataEntrada: new Date(2024, 11, 7),
         mecanicoId: 6,
       },
       {
@@ -139,7 +554,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 3,
         tempoReal: 1,
-        dataEntrada: new Date(7 / 11 / 2024),
+        dataEntrada: new Date(2024, 11, 7),
         mecanicoId: 2,
       },
       {
@@ -147,7 +562,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 4,
         tempoReal: 2,
-        dataEntrada: new Date(7 / 11 / 2024),
+        dataEntrada: new Date(2024, 11, 7),
         mecanicoId: 4,
       },
       {
@@ -155,7 +570,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 5,
         tempoReal: 4,
-        dataEntrada: new Date(7 / 11 / 2024),
+        dataEntrada: new Date(2024, 11, 7),
         mecanicoId: 7,
       },
       {
@@ -163,7 +578,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 2,
         tempoReal: 1,
-        dataEntrada: new Date(7 / 12 / 2024),
+        dataEntrada: new Date(2024, 12, 7),
         mecanicoId: 9,
       },
       {
@@ -171,7 +586,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 3,
         tempoReal: 2,
-        dataEntrada: new Date(7 / 12 / 2024),
+        dataEntrada: new Date(2024, 12, 7),
         mecanicoId: 3,
       },
       {
@@ -179,7 +594,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 1,
         tempoReal: 4,
-        dataEntrada: new Date(7 / 12 / 2024),
+        dataEntrada: new Date(2024, 12, 7),
         mecanicoId: 8,
       },
       {
@@ -187,7 +602,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 4,
         tempoReal: 1,
-        dataEntrada: new Date(7 / 12 / 2024),
+        dataEntrada: new Date(2024, 12, 7),
         mecanicoId: 6,
       },
       {
@@ -195,7 +610,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 5,
         tempoReal: 3,
-        dataEntrada: new Date(7 / 12 / 2024),
+        dataEntrada: new Date(2024, 12, 7),
         mecanicoId: 4,
       },
       {
@@ -203,7 +618,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 2,
         tempoReal: 2,
-        dataEntrada: new Date(7 / 12 / 2024),
+        dataEntrada: new Date(2024, 12, 7),
         mecanicoId: 10,
       },
       {
@@ -211,7 +626,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 3,
         tempoReal: 4,
-        dataEntrada: new Date(7 / 12 / 2024),
+        dataEntrada: new Date(2024, 12, 7),
         mecanicoId: 6,
       },
       {
@@ -219,7 +634,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 4,
         tempoReal: 1,
-        dataEntrada: new Date(7 / 12 / 2024),
+        dataEntrada: new Date(2024, 12, 7),
         mecanicoId: 7,
       },
       {
@@ -227,7 +642,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 1,
         tempoReal: 3,
-        dataEntrada: new Date(7 / 12 / 2024),
+        dataEntrada: new Date(2024, 12, 7),
         mecanicoId: 8,
       },
       {
@@ -235,7 +650,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 5,
         tempoReal: 5,
-        dataEntrada: new Date(7 / 12 / 2024),
+        dataEntrada: new Date(2024, 12, 7),
         mecanicoId: 9,
       },
       {
@@ -243,7 +658,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 2,
         tempoReal: 6,
-        dataEntrada: new Date(7 / 13 / 2024),
+        dataEntrada: new Date(2024, 13, 7),
         mecanicoId: 2,
       },
       {
@@ -251,7 +666,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 3,
         tempoReal: 4,
-        dataEntrada: new Date(7 / 13 / 2024),
+        dataEntrada: new Date(2024, 13, 7),
         mecanicoId: 1,
       },
       {
@@ -259,7 +674,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 4,
         tempoReal: 2,
-        dataEntrada: new Date(7 / 13 / 2024),
+        dataEntrada: new Date(2024, 13, 7),
         mecanicoId: 10,
       },
       {
@@ -267,7 +682,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 1,
         tempoReal: 1,
-        dataEntrada: new Date(7 / 13 / 2024),
+        dataEntrada: new Date(2024, 13, 7),
         mecanicoId: 9,
       },
       {
@@ -275,7 +690,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 5,
         tempoReal: 3,
-        dataEntrada: new Date(7 / 13 / 2024),
+        dataEntrada: new Date(2024, 13, 7),
         mecanicoId: 4,
       },
       {
@@ -283,7 +698,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 3,
         tempoReal: 2,
-        dataEntrada: new Date(7 / 13 / 2024),
+        dataEntrada: new Date(2024, 13, 7),
         mecanicoId: 7,
       },
       {
@@ -291,7 +706,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 2,
         tempoReal: 4,
-        dataEntrada: new Date(7 / 13 / 2024),
+        dataEntrada: new Date(2024, 13, 7),
         mecanicoId: 3,
       },
       {
@@ -299,7 +714,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 5,
         tempoReal: 1,
-        dataEntrada: new Date(7 / 13 / 2024),
+        dataEntrada: new Date(2024, 13, 7),
         mecanicoId: 2,
       },
       {
@@ -307,7 +722,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 4,
         tempoReal: 3,
-        dataEntrada: new Date(7 / 13 / 2024),
+        dataEntrada: new Date(2024, 13, 7),
         mecanicoId: 8,
       },
       {
@@ -315,7 +730,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 1,
         tempoReal: 5,
-        dataEntrada: new Date(7 / 13 / 2024),
+        dataEntrada: new Date(2024, 13, 7),
         mecanicoId: 6,
       },
       {
@@ -323,7 +738,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 3,
         tempoReal: 6,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 4,
       },
       {
@@ -331,7 +746,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 2,
         tempoReal: 4,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 7,
       },
       {
@@ -339,7 +754,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 4,
         tempoReal: 1,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 3,
       },
       {
@@ -347,7 +762,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 5,
         tempoReal: 3,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 1,
       },
       {
@@ -355,7 +770,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 3,
         tempoReal: 2,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 10,
       },
       {
@@ -363,7 +778,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 2,
         tempoReal: 1,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 9,
       },
       {
@@ -371,7 +786,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 4,
         tempoReal: 4,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 2,
       },
       {
@@ -379,7 +794,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 1,
         tempoReal: 5,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 8,
       },
       {
@@ -387,7 +802,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 3,
         tempoReal: 6,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 6,
       },
       {
@@ -395,7 +810,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 2,
         tempoReal: 1,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 7,
       },
       {
@@ -403,7 +818,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 5,
         tempoReal: 3,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 4,
       },
       {
@@ -411,7 +826,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 4,
         tempoReal: 2,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 9,
       },
       {
@@ -419,7 +834,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 3,
         tempoReal: 4,
-        dataEntrada: new Date(7 / 14 / 2024),
+        dataEntrada: new Date(2024, 14, 7),
         mecanicoId: 3,
       },
       {
@@ -427,7 +842,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 1,
         tempoReal: null,
-        dataEntrada: new Date(7 / 15 / 2024),
+        dataEntrada: new Date(2024, 15, 7),
         mecanicoId: null,
       },
       {
@@ -435,7 +850,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 5,
         tempoReal: null,
-        dataEntrada: new Date(7 / 15 / 2024),
+        dataEntrada: new Date(2024, 15, 7),
         mecanicoId: null,
       },
       {
@@ -443,7 +858,7 @@ async function main() {
         complexidadeDoConserto: 1,
         tipoConsertoId: 2,
         tempoReal: null,
-        dataEntrada: new Date(7 / 15 / 2024),
+        dataEntrada: new Date(2024, 15, 7),
         mecanicoId: null,
       },
       {
@@ -451,7 +866,7 @@ async function main() {
         complexidadeDoConserto: 2,
         tipoConsertoId: 4,
         tempoReal: null,
-        dataEntrada: new Date(7 / 15 / 2024),
+        dataEntrada: new Date(2024, 15, 7),
         mecanicoId: null,
       },
       {
@@ -459,7 +874,7 @@ async function main() {
         complexidadeDoConserto: 3,
         tipoConsertoId: 3,
         tempoReal: null,
-        dataEntrada: new Date(7 / 15 / 2024),
+        dataEntrada: new Date(2024, 15, 7),
         mecanicoId: null,
       },
     ],

@@ -34,10 +34,23 @@ model ConsertoDeMotos {
 
   mecanico     Mecanico?    @relation(fields: [mecanicoId], references: [mecanicoId])
   tipoConserto TipoConserto @relation(fields: [tipoConsertoId], references: [id])
+  moto         Moto         @relation(fields: [motoId], references: [id])
+
+  @@index([motoId])
 }
 
 model TipoConserto {
   id            Int               @id @default(autoincrement())
   tempoEstimado Int
   consertos     ConsertoDeMotos[]
+}
+
+model Moto {
+  id        Int               @id @default(autoincrement())
+  marca     String
+  modelo    String
+  ano       Int
+  cor       String
+  cpf       String?
+  consertos ConsertoDeMotos[]
 }
